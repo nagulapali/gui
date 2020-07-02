@@ -1,5 +1,8 @@
 import React from "react";
 import './Overridding.css';
+import logo2 from './logo2.png';
+import logo1 from './logo1.gif';
+import logo from './logo.png';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,63 +11,135 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+
+
+
+
 const routes = [
   {
     path: "/veg",
     exact: true,
-    sidebar: () => <div>veg</div>,
+    sidebar: () => <div>Preferred Veg!</div>,
     main: () =>
-    <div>
-    <h3>veg-meals</h3>
-   
-    <tb>
-    <h3>veg-meals</h3>
-    </tb>
-    <h3>veg-meals</h3>
-    </div>
-    
- 
-  
-  
+      <div style={{ background: "lightyellow", width: "200%", padding: "20px", }}>
+        <h4>Veg-Meals</h4>
+        <h4>Veg-Biryani</h4>
+        <h4>Veg-Fried-Rice</h4>
+        <h4>Veg-Manchuria</h4>
+        <h4>Soya Rice</h4>
+
+      </div>
   },
   {
-    path: "/bubblegum",
-    sidebar: () => <div>bubblegum!</div>,
-    main: () => <h2>Bubblegum</h2>
+    path: "/non-veg",
+    sidebar: () => <div>preferred non-veg!</div>,
+    main: () =>
+      <div style={{ background: "lightgreen", width: "200%", padding: "20px", }}>
+        <h4>Chicken-65</h4>
+        <h4>Chicken-biryani</h4>
+        <h4>Chicken-fried-rice</h4>
+        <h4>mutton-fried-rice</h4>
+        <h4>Chicken dum biryani</h4>
+      </div>
   },
   {
-    path: "/shoelaces",
-    sidebar: () => <div>shoelaces!</div>,
-    main: () => <h2>Shoelaces</h2>
-  }
+    path: "/salads",
+    exact: true,
+    sidebar: () => <div>preferred Salads!</div>,
+    main: () =>
+      <div style={{ background: "lightpink", width: "200%", padding: "20px", }}>
+        <h4>The Wedge</h4>
+        <h4>ceasar salad</h4>
+        <h4>crab</h4>
+        <h4>veggie salad</h4>
+
+      </div>
+  },
+  {
+    path: "/deserts",
+    sidebar: () => <div>preferred deserts!</div>,
+    main: () =>
+      <div style={{ background: "aqua", width: "200%", padding: "20px", }}>
+        <h4>pannacotta</h4>
+        <h4>fruit jelly</h4>
+        <h4>cup cakes</h4>
+        <h4>pan cakes</h4>
+        <h4>Banoffe pie</h4>
+      </div>
+  },
+  {
+    path: "/softdrinks",
+    sidebar: () => <div>preferred Soft drinks!</div>,
+    main: () =>
+      <div style={{ background: "orange", width: "200%", padding: "20px", }}>
+        <h4>pepsi</h4>
+        <h4>coca cola</h4>
+        <h4>mango jucie</h4>
+        <h4>sprite</h4>
+        <h4>orange</h4>
+      </div>
+  },
+  {
+    path: "/icecreams",
+    sidebar: () => <div>preferred icecreams!</div>,
+    main: () =>
+      <div style={{ background: "lightgray", width: "200%", padding: "20px", }}>
+        <h4>choclate</h4>
+        <h4>vanilla</h4>
+        <h4>strawberry</h4>
+        <h4>grape</h4>
+        <h4>cone</h4>
+      </div>
+  },
+
 ];
 
 export default function App() {
   return (
     <Router>
-      <h1> N&R son's Restaurtant</h1>
       <div>
-        <ul style={{ listStyleType: "none", padding: "10px" }}>
-          
+        <div
+          style={{
+            textAlign: "center",
+            fontFamily: "",
+            color: "whitesmoke",
+            padding: "30px",
+            width: "100%",
+            background: "skyblue"
+          }}
+        >
+          <div>
+            <img src={logo1} className="logo" alt="logo" />
+            <h1> N&R son's Restaurtant</h1>
+          </div>
+        </div>
+
+
+      </div>
+      <div>
+
+        <ul style={{ backgroundcolor: "paleblue", listStyleType: "none" }}>
+
           <li>
-            <Link to="/topics">Home</Link>
+            <Link to="/menu"><img src={logo} className="home" alt="logo" /></Link>
           </li>
           <li>
-            <Link to="/back">Back</Link>
+            <Link to="/back"><img src={logo2} className="back" alt="logo" /></Link>
           </li>
         </ul>
 
         <Switch>
-        <Route path="/back">
+          <Route path="/back">
             <Back />
           </Route>
-          
-          <Route path="/topics">
-            <Topics />
+
+          <Route path="/menu">
+            <Menu />
           </Route>
-          </Switch>
-        
-        </div>
+        </Switch>
+      </div>
+
+
     </Router>
   );
 }
@@ -73,13 +148,13 @@ function Back() {
 }
 
 
-function Topics() {
+function Menu() {
   let match = useRouteMatch();
 
   return (
     <Router>
 
-       <div style={{ display: "flex" }}>
+      <div style={{ display: "flex" }}>
         <div
           style={{
             padding: "10px",
@@ -87,38 +162,43 @@ function Topics() {
             background: "#f0f0f0"
           }}
         >
-    
-      <h2>Menu</h2>
 
-      <ul style={{ listStyleType: "none", padding: 0 }}>
-        <li>
-          <Link to="/veg">veg</Link>
-        </li>
-        <li>
-          <Link to="/non-veg">non-veg</Link>
-        </li>
-        <li>
-          <Link to="/deserts">desserts</Link>
-        </li>
-        <li>
-          <Link to="/Salads">Salads</Link>
-        </li>
-        <li>
-          <Link to="softdrinks">Soft-drinks</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/icecreams`}>ice creams</Link>
-        </li>
-      </ul>
+          <h2>Menu</h2>
 
-      {/* The Topics page has its own <Switch> with more routes
+          <ul style={{ listStyleType: "none", padding: "-10px" }}>
+            <li>
+              <Link to="/veg">veg</Link>
+            </li>
+            <li>
+              <Link to="/non-veg">non-veg</Link>
+            </li>
+            <li>
+              <Link to="/deserts">desserts</Link>
+            </li>
+            <li>
+              <Link to="/Salads">Salads</Link>
+            </li>
+            <li>
+              <Link to="/softdrinks">Soft-drinks</Link>
+            </li>
+            <li>
+              <Link to="/icecreams">ice creams</Link>
+            </li>
+            <li>
+              <Link to="/back">Back</Link>
+            </li>
+          </ul>
+
+          {/* The Topics page has its own <Switch> with more routes
           that build on the /topics URL path. You can think of the
           2nd <Route> here as an "index" page for all topics, or
           the page that is shown when no topic is selected */}
-        
-      
-      <Switch>
+
+
+          <Switch>
+
             {routes.map((route, index) => (
+
               // You can render a <Route> in as many places
               // as you want in your app. It will render along
               // with any other <Route>s that also match the URL.
@@ -133,11 +213,12 @@ function Topics() {
                 children={<route.sidebar />}
               />
             ))}
-          </Switch>
-          </div>
-        
 
-        <div style={{ flex: 1, padding: "10px" }}>
+          </Switch>
+        </div>
+
+
+        <div style={{ padding: "10px" }}>
           <Switch>
             {routes.map((route, index) => (
               // Render more <Route>s with the same paths as
@@ -150,9 +231,9 @@ function Topics() {
               />
             ))}
           </Switch>
-       </div>
-    </div>
-    
+        </div>
+      </div>
+
     </Router>
   );
 }
